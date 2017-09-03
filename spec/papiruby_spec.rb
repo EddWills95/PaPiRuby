@@ -9,6 +9,10 @@ RSpec.describe Papiruby do
     it "should display some text" do
       expect(Papiruby.write_text("Hello, World")).to eq("Writing to Papirus.......\nFinished!\n")
     end
+
+    it "should alter the size" do
+      expect(Papiruby.write_text("Hello, World", size: 20)).to eq("Writing to Papirus.......\nFinished!\n")
+    end
   end
 
   describe "clearing the screen" do

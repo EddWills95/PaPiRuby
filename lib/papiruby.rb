@@ -1,8 +1,10 @@
 require "papiruby/version"
+require "pry-byebug"
 
 module Papiruby
-  def self.write_text(text)
-    command = "papirus-write '#{text}'"
+  def self.write_text(text, **args)
+    args[:size] ||= 10
+    command = "papirus-write '#{text}' --fsize #{args[:size]}"
     return %x(#{command})
   end
 
