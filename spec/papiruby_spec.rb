@@ -11,4 +11,10 @@ RSpec.describe Papiruby do
     end
   end
 
+  describe "clearing the screen" do
+    it "should clear the screen" do
+      expect(Papiruby.clear).to eq("Clearing Papirus.......\nFinished!\n")
+    end
+  end
+
 end
