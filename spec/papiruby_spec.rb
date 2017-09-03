@@ -13,6 +13,10 @@ RSpec.describe Papiruby do
     it "should alter the size" do
       expect(Papiruby.write_text("Hello, World", size: 20)).to eq("Writing to Papirus.......\nFinished!\n")
     end
+
+    it "should invert the text colours" do
+      expect(Papiruby.write_text("Hello, World", size: 20, invert: true)).to eq("Writing to Papirus.......\nFinished!\n")
+    end
   end
 
   describe "displaying picture" do

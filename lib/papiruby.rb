@@ -3,8 +3,13 @@ require "pry-byebug"
 
 module Papiruby
   def self.write_text(text, **args)
+    command = ""
     args[:size] ||= 10
-    command = "papirus-write '#{text}' --fsize #{args[:size]}"
+    if args[:invert] 
+      command = "papirus-write '#{text}' --fsize #{args[:size]} -i INVERT"
+    else
+      command = "papirus-write '#{text}' --fsize #{args[:size]}"
+    end
     return %x(#{command})
   end
 
