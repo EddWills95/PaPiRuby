@@ -7,7 +7,7 @@ RSpec.describe Papiruby do
 
   describe "priting text to screen" do
     it "should display some text" do
-      expect(Papiruby.write_text("Hello, World")).to eq("Writing Text")
+      expect(Papiruby.write_text("Hello, World")).to eq("Writing to Papirus.......\nFinished!\n")
     end
   end
 

@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{A Small Wrapper for PaPiRus in ruby}
   spec.description   = %q{Ruby Wrapper for the raspberry pi PaPiRus. Using the command line tools}
-  spec.homepage      = "www.somewhere.com"
+  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
   # to allow pushing to a single host or delete this section to allow pushing to any host.
