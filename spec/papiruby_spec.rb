@@ -16,8 +16,11 @@ RSpec.describe Papiruby do
   end
 
   describe "displaying picture" do
-    it "should display and image" do
+    it "should display an image" do
       expect(Papiruby.draw_image("./test_img.jpg")).to eq("Drawing on PaPiRus.......\nLandscape image resized!\n")
+    end
+    it "should display an image with crop" do
+      expect(Papiruby.draw_image("./test_img.jpg", type: "crop")).to eq("Drawing on PaPiRus.......\nLandscape image cropped!\n")
     end
   end
 
