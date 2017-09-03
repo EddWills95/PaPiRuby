@@ -19,8 +19,13 @@ RSpec.describe Papiruby do
     it "should display an image" do
       expect(Papiruby.draw_image("./test_img.jpg")).to eq("Drawing on PaPiRus.......\nLandscape image resized!\n")
     end
+
     it "should display an image with crop" do
       expect(Papiruby.draw_image("./test_img.jpg", type: "crop")).to eq("Drawing on PaPiRus.......\nLandscape image cropped!\n")
+    end
+
+    it "should display an image rotated" do
+      expect(Papiruby.draw_image("./test_img.jpg", rotate: 90)).to eq("Drawing on PaPiRus.......\nLandscape image resized!\n")
     end
   end
 

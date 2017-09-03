@@ -10,7 +10,8 @@ module Papiruby
 
   def self.draw_image(path, **args)
     args[:type] ||= "resize"
-    command = "papirus-draw #{path} -t #{args[:type]}"
+    args[:rotate] ||= 0
+    command = "papirus-draw #{path} -t #{args[:type]} -r #{args[:rotate]}"
     return %x(#{command})
   end
 
