@@ -15,6 +15,12 @@ RSpec.describe Papiruby do
     end
   end
 
+  describe "displaying picture" do
+    it "should display and image" do
+      expect(Papiruby.draw_image("./test_img.jpg")).to eq("Drawing on PaPiRus.......\nLandscape image resized!\n")
+    end
+  end
+
   describe "clearing the screen" do
     it "should clear the screen" do
       expect(Papiruby.clear).to eq("Clearing Papirus.......\nFinished!\n")

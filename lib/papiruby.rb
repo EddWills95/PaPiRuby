@@ -8,6 +8,11 @@ module Papiruby
     return %x(#{command})
   end
 
+  def self.draw_image(path)
+    command = "papirus-draw #{path}"
+    return %x(#{command})
+  end
+
   def self.clear
     return %x(papirus-clear)
   end
