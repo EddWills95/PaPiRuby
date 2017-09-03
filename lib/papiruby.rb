@@ -5,10 +5,12 @@ module Papiruby
   def self.write_text(text, **args)
     command = ""
     args[:size] ||= 10
+    args[:rotate] ||= 0
+    basic_command = "papirus-write '#{text}' --fsize #{args[:size]} -r #{args[:rotate]}"
     if args[:invert] 
-      command = "papirus-write '#{text}' --fsize #{args[:size]} -i INVERT"
+      command = "#{basic_command} -i INVERT"
     else
-      command = "papirus-write '#{text}' --fsize #{args[:size]}"
+      command = basic_command
     end
     return %x(#{command})
   end

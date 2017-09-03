@@ -14,6 +14,10 @@ RSpec.describe Papiruby do
       expect(Papiruby.write_text("Hello, World", size: 20)).to eq("Writing to Papirus.......\nFinished!\n")
     end
 
+    it "should rotate the text" do
+      expect(Papiruby.write_text("Hello, World", size: 20, rotate: 180)).to eq("Writing to Papirus.......\nFinished!\n")
+    end
+
     it "should invert the text colours" do
       expect(Papiruby.write_text("Hello, World", size: 20, invert: true)).to eq("Writing to Papirus.......\nFinished!\n")
     end
