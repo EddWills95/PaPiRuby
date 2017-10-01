@@ -1,5 +1,7 @@
 require "bundler/setup"
 require "papiruby"
+require "./lib/papiruby/epd"
+require "pry-byebug"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

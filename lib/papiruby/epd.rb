@@ -1,8 +1,9 @@
 require 'base64'
 require 'mini_magick'
+require 'chunky_png'
 require 'pry-byebug'
 
-class EPD
+class Papiruby::EPD
 
   attr_accessor :epd_path, :width, :height, :panel, :cog, :film, :auto, :rotation 
 
@@ -15,30 +16,59 @@ class EPD
     self.film = 0
     self.auto = false
     self.rotation = 0
-
   end
 
   def display(file)
-    # Open file
-    image_file = MiniMagick::Image.open(file)
-    # Convert to Greyscale & save
-    image_file.colorspace "Gray"
-    image_file.write "tmp.img"
-    # Encode into base 64
-    image_bytes = File.open("tmp.img")
+    self.clear
     
-    # open EPD file
-    f = File.new(File.join(self.epd_path, "LE", "display_inverse"), "w+")
-    # Write that bytecode to the file
-    
-    f.write(image_bytes)
+    # # Write back to the file
 
-    # Update the screen
-    self.update()
+    @new_image = binary_to_hex(file)
+
+    
+    @epd_display = File.new(File.join(self.epd_path, "LE", "display_inverse"), 'wb')
+
+    File.open(File.join(self.epd_path, "LE", "display_inverse"), 'wb') do |file|
+      file.write ""
+
+      
+      file.write @new_image
+    end
+
+    # File.open(File.join(self.epd_path, "LE", "display_inverse"), 'rb') { |file| file.write(@new_image) }
+
+    # File.binwrite(File.join(self.epd_path, "LE", "display_inverse"), @new_image)
+
+    # Call the update
+    self.update
+
+  end
+
+  def binary_to_hex(file)
+    convert_file(file)
+    bin = File.binread("output.jpg")
+    binary = bin.unpack('C*')
+    string_to_write = binary.pack("CS*")
+  
+    return string_to_write
+  end
+
+  def convert_file(file)
+    MiniMagick::Tool::Convert.new do |convert|
+      convert << file
+      convert << "-colorspace" << "Gray"
+      convert << "-resize" << "#{self.width}x#{self.height}"
+      convert << "-quality" << "1"
+      convert << "output.jpg"
+    end
   end
 
   def update()
     self._command('U')
+  end
+  
+  def clear()
+    self._command('C')
   end
 
   def _command(c)
@@ -46,7 +76,3 @@ class EPD
     f.write(c)
   end
 end
-
-epd = EPD.new
-
-epd.display("./test_img.jpg")

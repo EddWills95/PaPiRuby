@@ -34,4 +34,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_development_dependency "pry-byebug"
   spec.add_development_dependency "mini_magick"
+  spec.add_development_dependency "chunky_png"
 end

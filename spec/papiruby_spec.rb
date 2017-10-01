@@ -5,42 +5,24 @@ RSpec.describe Papiruby do
     expect(Papiruby::VERSION).not_to be nil
   end
 
-  describe "priting text to screen" do
-    it "should display some text" do
-      expect(Papiruby.write_text("Hello, World")).to eq("Writing to Papirus.......\nFinished!\n")
+  describe "EPD" do
+    before do
+      @epd = Papiruby::EPD.new
+      @file_path = "test_img.jpg"
+    end
+    
+    # describe "binary_to_hex" do
+    #   it "should return a hex value from binary" do 
+    #     expect(@epd.binary_to_hex(@file_path)).to eq("xff")
+    #   end
+    # end
+    
+    describe "display" do
+      it "should display an image" do
+        expect(@epd.display(@file_path)).to eq("")
+      end
     end
 
-    it "should alter the size" do
-      expect(Papiruby.write_text("Hello, World", size: 20)).to eq("Writing to Papirus.......\nFinished!\n")
-    end
-
-    it "should rotate the text" do
-      expect(Papiruby.write_text("Hello, World", size: 20, rotate: 180)).to eq("Writing to Papirus.......\nFinished!\n")
-    end
-
-    it "should invert the text colours" do
-      expect(Papiruby.write_text("Hello, World", size: 20, invert: true)).to eq("Writing to Papirus.......\nFinished!\n")
-    end
-  end
-
-  describe "displaying picture" do
-    it "should display an image" do
-      expect(Papiruby.draw_image("./test_img.jpg")).to eq("Drawing on PaPiRus.......\nLandscape image resized!\n")
-    end
-
-    it "should display an image with crop" do
-      expect(Papiruby.draw_image("./test_img.jpg", type: "crop")).to eq("Drawing on PaPiRus.......\nLandscape image cropped!\n")
-    end
-
-    it "should display an image rotated" do
-      expect(Papiruby.draw_image("./test_img.jpg", rotate: 90)).to eq("Drawing on PaPiRus.......\nLandscape image resized!\n")
-    end
-  end
-
-  describe "clearing the screen" do
-    it "should clear the screen" do
-      expect(Papiruby.clear).to eq("Clearing Papirus.......\nFinished!\n")
-    end
-  end
-
+  end 
 end
+
