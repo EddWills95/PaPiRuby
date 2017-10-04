@@ -22,10 +22,12 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+this branch is a working setup using chunky_png, which does not need any imagemagic libs,
+just checkout this barch an run `ruby lib/papiruby/epd.rb` on your Raspberry Pi with the PaPiRus display
 
-need to install 
-`sudo apt-get install graphicsmagick`
+gem to install
+
+`(sudo) gem install chunky_png`
 
 ## Development
 
